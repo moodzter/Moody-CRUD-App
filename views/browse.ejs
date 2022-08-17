@@ -8,5 +8,18 @@
 </head>
 <body>
     <h1>Browse</h1>
+    <nav>
+        <%- include('./partials/nav.ejs')%>
+    </nav>
+    <div>
+        <ul>
+            <% for(let i = 0; i < items.length; i++) {%> 
+                <li>
+                    <a href="/browse/<%=items[i]._id%>"><%=items[i].name %></a>
+                    <button>Add to Cart</button>
+                </li>
+            <%}%>
+        </ul>
+    </div>
 </body>
 </html>

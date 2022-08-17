@@ -4,7 +4,7 @@
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
-const Item = require('./models/browse');
+const Item = require('./models/browse.js');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -100,18 +100,55 @@ app.get('/browse', (req, res) => {
   })
 })
 
+// BROWSE SHOW 
+
+app.get('/browse/:id', (req, res) => {
+  Item.findById(req.params.id, (error, data) => {
+    res.render(
+      'show_browse.ejs',
+      {
+        item: data
+      }
+    )
+  })
+})
+
 // SEED 
 app.get('/browse/seed', (req, res) => {
   Item.create(
     [
       {
         name: 'Mona Lisa',
-        img: '',
+        img: 'https://i.imgur.com/xhntSYL.jpeg',
         price: 90000000
+      },
+      {
+        name: 'American Gothic',
+        img: '', 
+        price: 80000000
+      },
+      {
+        name: 'Girl with a Pearl Earring',
+        img: '',
+        price: 60000000
+      },
+      {
+        name: 'The Creation of Adam', 
+        img: '',
+        price: 30000000
+      }, {
+        name: 'The Wanderer Above The Sea Of Fog',
+        img: '',
+        price: 10000000
+      }, {
+        name: 'The Tower Of Babel',
+        img: '',
+        price: 5000000
       }
+
     ],
     (err, data)=>{
-      res.redirect('/home')
+      res.redirect('/browse')
     }
   )
 })

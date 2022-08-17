@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 //Schema 
 const browseSchema = new mongoose.Schema({
     name: { type: String, required: true},
-    img: { type: String, required: true},
+    image: {type: String},
+    description: {type: String},
     price: { type: Number, required: true},
 });
 
