@@ -4,6 +4,7 @@
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
+const Item = require('./models/browse');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -51,6 +52,75 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 app.get('/' , (req, res) => {
   res.send('Hello World!');
 });
+
+// CONTACT 
+
+app.get('/contact', (req, res) => {
+  res.render(
+    'contact.ejs'
+  )
+})
+
+// LINKS 
+
+app.get('/links', (req, res) => {
+  res.render(
+    'links.ejs'
+  )
+})
+
+// CART 
+
+app.get('/cart', (req, res) => {
+  res.render(
+    'cart.ejs'
+  )
+})
+
+// SUGGESTIONS
+
+app.get('/suggestions', (req, res) => {
+  res.render(
+    'suggestions.ejs'
+  )
+})
+
+// HOME 
+
+app.get('/home', (req, res) => {
+  res.render(
+    'home.ejs'
+  )
+})
+
+// BROWSE
+
+app.get('/browse', (req, res) => {
+  Item.find({}, (error, data) => {
+    res.render(
+      'browse.ejs',
+      {
+        items: data
+      }
+    )
+  })
+})
+
+// SEED 
+app.get('/browse/seed', (req, res) => {
+  Item.create(
+    [
+      {
+        name: 'Mona Lisa',
+        img: '',
+        price: 90000000
+      }
+    ],
+    (err, data)=>{
+      res.redirect('/home')
+    }
+  )
+})
 
 //___________________
 //Listener
