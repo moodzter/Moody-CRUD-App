@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ('./partials/head.ejs')%>
     <title>Document</title>
 </head>
-<body>
+<body class = "links_body">
+    <nav>
+        <%- include ('./partials/nav.ejs')%>
+    </nav>
     <h1>Links</h1>
+    <div class="links_wrapper">
+        <div class="flex_links">
+            <a href="#">Twitter</a>
+        </div>
+        <div class="flex_links">
+            <a href="#">Instagram</a>
+        </div>
+        <div class="flex_links">
+            <a href="#">FaceBook</a>
+        </div>
+        <div class="flex_links">
+            <a href="#">SnapChat</a>
+        </div>
+        
+    </div>
 </body>
 </html>
