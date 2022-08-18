@@ -178,6 +178,13 @@ app.get('/browse/:id', (req, res) => {
   })
 })
 
+// UNDER CONSTRUCTION PAGE 
+app.get('/construction', (req, res) => {
+  res.render(
+    'construction.ejs'
+  )
+})
+
 // SEED SUGGESTIONS
 
 app.get('/suggestions/seed', (req, res) => {

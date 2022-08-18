@@ -4,7 +4,7 @@
 }
 
 .sug_divs {
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 1em;
     margin: 1.3em;
 }
@@ -252,4 +252,10 @@ body {
 
 .flex_links:hover {
     background-color: #a98467
+}
+
+/* CONSTRUCTION */
+
+.constructionBody {
+    text-align: center;
 }
