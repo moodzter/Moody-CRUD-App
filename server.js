@@ -5,6 +5,7 @@ const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const Item = require('./models/browse.js');
+const Suggestion = require('./models/suggestions.js');
 const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
@@ -82,9 +83,73 @@ app.get('/cart', (req, res) => {
 // SUGGESTIONS
 
 app.get('/suggestions', (req, res) => {
-  res.render(
-    'suggestions.ejs'
-  )
+  Suggestion.find({}, (error, data) => {
+    res.render(
+      'suggestions.ejs',
+      {
+        suggestion: data
+      }
+    )
+  })
+  
+})
+
+// DELETE SUGGESTIONS
+
+app.delete('/suggestions/:id', (req, res) => {
+  Suggestion.findByIdAndRemove(req.params.id, (error, data) => {
+    res.redirect('/suggestions')
+  })
+})
+
+// EDIT SUGGESTIONS
+
+app.get('/suggestions/:id/edit', (req, res) => {
+  Suggestion.findById(req.params.id, (error, data) => {
+    res.render(
+      'edit_suggestions.ejs',
+      {
+        suggestion: data
+      }
+    )
+  })
+})
+
+// SUGGESTIONS PUT
+
+app.put('/suggestions/:id', (req, res) => {
+  Suggestion.findByIdAndUpdate(req.params.id, req.body, {new: true}, (error, data) => {
+    res.redirect('/suggestions')
+  })
+})
+
+
+
+//NEW SUGGESTIONS
+
+app.get('/suggestions/new', (req, res) => {
+  res.render('new_suggestions.ejs')
+})
+
+//SHOW PAGE SUGGESTIONS
+
+app.get('/suggestions/:id', (req, res) => {
+  Suggestion.findById(req.params.id, (error, data) => {
+    res.render(
+      'show_suggestions.ejs',
+      {
+        suggestion: data
+      }
+    )
+  })
+})
+
+//POSTING NEW SUGGESTIONS
+
+app.post('/suggestions', (req, res) => {
+  Suggestion.create(req.body, (error, data) => {
+    res.redirect('/suggestions')
+  })
 })
 
 // BROWSE
@@ -113,7 +178,25 @@ app.get('/browse/:id', (req, res) => {
   })
 })
 
-// SEED 
+// SEED SUGGESTIONS
+
+app.get('/suggestions/seed', (req, res) => {
+  Suggestion.create(
+    [
+      {
+        name: 'The Scream',
+        img: 'https://www.brushwiz.com/images/top-100/top_100_paintings_the_scream_by_edvard_munch.jpg',
+        description: `Edvard Munch's painting The Scream is one of the most recognized pieces of art in history. It is known for its depiction of a single figure amid a chaotic landscape, hands clasped to his face in a look of utter despair It is an image that has been parodied and built upon many times in pop culture since the painting's debut in 1893. `,
+        price: 100000
+      }
+    ],
+    (err, data)=>{
+      res.redirect('/suggestions')
+    }
+  )
+})
+
+// SEED BROWSE
 app.get('/browse/seed', (req, res) => {
   Item.create(
     [

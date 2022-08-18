@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('./partials/head.ejs')%>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <%- include ('./partials/nav.ejs')%>
+    </nav>
+    <div class="sugNew_div">
+    <h1 class="sugNew_h1">New Suggestion</h1>
+    <a class="sugNew_a"href="/suggestions">Back</a>
+    <form action="/suggestions" method="POST">
+        Name of Painting: <input id="sugInput" class="sugNew_inputs" type ='text' name="name"/> <br/>
+        Img URL: <input class="sugNew_inputs" type ='text' name="img"/> <br/>
+        Description: <input class="sugNew_inputs" type ='text' name="description"/> <br/>
+        Price: <input class="sugNew_inputs" type="number" name="price"/> <br/>
+        Artist: <input class="sugNew_inputs" type="text" name="artist"/> <br/>
+        <input id="sugSubmit"class="sugNew_inputs" type="submit" value="Add Suggestion"/>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include ('./partials/head.ejs')%>
+    <title>Suggestions</title>
 </head>
 <body>
-    <h1>Suggestions</h1>
+    <nav>
+        <%- include ('./partials/nav.ejs')%>
+    </nav>
+    <h1 class="sug_h1">Suggestions</h1>
+    <p class="sug_p">Here you have the ability to post suggestions to our page! If we approve your suggestion, it will become an item available to purchase on our browse page!</p>
+    <div class="sug_div">
+        <a href="/suggestions/new"><h3 id="sug_h3">Click Here to Post a Suggestion!</h3></a>
+        <h3 class="sug_h3">POSTS</h3>
+        <ul class="sug_ul">
+            <%for(let i = 0; i < suggestion.length; i++) {%>
+                <div class="sug_divs">
+                <li class="sug_li"><a href="/suggestions/<%=suggestion[i]._id %>" id="sug_nameOfItem"><%= suggestion[i].name%></a>
+                </br>
+                <img src="<%=suggestion[i].img%>" class="sug_img"/> <br/>
+                <a href="/suggestions/<%=suggestion[i]._id%>/edit">Edit</a> </br>
+                <form action="/suggestions/<%=suggestion[i]._id%>?_method=DELETE" method="POST">
+                <input type="submit" value="DELETE" class="sug_delete"/>
+                </form>
+            </li>
+            </div> 
+                <% } %>
+        </ul>
+    </div>
 </body>
 </html>

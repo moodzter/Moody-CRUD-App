@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('./partials/head.ejs') %>
+    <title>Document</title>
+</head>
+<body class="showBody">
+    
+    <h4 class="sugShow_h4"><a href="/suggestions">Back</a></h4>
+    <div class="sugShow_div">
+    <h1 class="sugShow_h1">More Information</h1>
+    <div class="sugShow_img">
+        <h2><%=suggestion.name%></h2>
+        <img src="<%=suggestion.img%>">
+    </div>
+        <h3>Description:</h3>
+        <p id="sugShow_description"><%=suggestion.description%></p>
+        <h3>Price: $<%=suggestion.price%></h3>
+        <h3>Artist: <%=suggestion.artist%></h3>
+    </div>
+</body>
+</html>

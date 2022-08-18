@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ('./partials/head.ejs')%>
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <%- include ('./partials/nav.ejs')%>
+    </nav>
+    <div class="sugEdit_div">
+    <h4><a href="/suggestions">Back</a></h4>
+    <h1>Edit</h1>
+        <form action="/suggestions/<%=suggestion.id%>?_method=PUT" method="POST">
+        <form style="font-size: 1.3em" class="sugEdit_form">
+            
+            Name: <input class="sugEdit_input" type="text" name = "name" value="<%=suggestion.name%>"/> <br/>
+            IMG Url: <input class="sugEdit_input" type="text" name="img" value="<%=suggestion.img%>"/> <br/>
+            Description: <input class="sugEdit_input" type="text" name="description" value="<%=suggestion.description%>"/> <br/>
+            Price: <input class="sugEdit_input" type="number" name="price" value="<%=suggestion.price %>"/> <br/>
+            Artist: <input class="sugEdit_input" type="text" name="artist" value="<%=suggestion.artist%>"/> <br/>
+            <input type="submit" value="Submit Changes"/>
+        </form>
+    </div>
+</body>
+</html>
